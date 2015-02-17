@@ -8,9 +8,11 @@
 	<input type="file" id="filereader"/>
 	<script src="js/JSMIDIparser.js"></script>
 	<script>
+		var midi = new Object();
 		// Your callback function
 		function MyCallback(obj){
 			console.log("%o", obj);
+			midi = obj;
 			alert("Done! check your console Log for output dump");
 		};
 		
