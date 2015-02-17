@@ -10,17 +10,16 @@
 </head>
 <body>
 	<div id="canvas">
-		<p>text</p>
 		<!-- d3 scripts -->
 		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script>
 			//Make an SVG Container
-			var svgContainer = d3.select("main").append("svg")
+			var svgContainer = d3.select("#canvas").append("svg")
 									 .attr("width", 200)
 									 .attr("height", 400);
 
-			 //Draw the Rectangle
-			 var rectangle = svgContainer.append("rect")
+			//Draw the Rectangle
+			var rectangle = svgContainer.append("rect")
 										.attr("x", 10)
 										 .attr("y", 10)
 										.attr("width", 50)

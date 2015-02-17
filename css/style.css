@@ -2,10 +2,10 @@
 	top: 6em;
 	position: relative;
     box-sizing: border-box;
-	animation: marquee 15s linear infinite;
+	animation: scroll 15s linear infinite;
 }
 
-@keyframes marquee {
+@keyframes scroll {
     0% {
         top: 8em
     }
