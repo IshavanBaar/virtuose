@@ -3,9 +3,6 @@
 <head>
 </head>
 <body>
-	Simple example for JSMIDIParser 
-	<br/>
-	<input type="file" id="filereader"/>
 	<script src="js/JSMIDIParser.js"></script>
 	<script>
 		// Your callback function
@@ -15,7 +12,7 @@
 		};
 		
 		// JSMIDIParser
-		JSMIDIParser.IO('filereader', MyCallback);
+		JSMIDIParser.IO('mid/test.mid', MyCallback);
 	</script>
 <body>
 </html>
