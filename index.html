@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+	Simple example for JSMIDIParser 
+	<br/>
+	<input type="file" id="filereader"/>
+	<script src="js/JSMIDIParser.js"></script>
+	<script>
+		// Your callback function
+		function MyCallback(obj){
+			console.log("%o", obj);
+			alert("Done! check your console Log for output dump");
+		};
+		
+		// JSMIDIParser
+		JSMIDIParser.IO('filereader', MyCallback);
+	</script>
+<body>
+</html>
