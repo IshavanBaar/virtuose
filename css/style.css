@@ -1,0 +1,15 @@
+#canvas {
+	top: 6em;
+	position: relative;
+    box-sizing: border-box;
+	animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        top: 8em
+    }
+    100% {
+        top: -11em
+    }
+}
