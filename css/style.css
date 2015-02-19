@@ -2,14 +2,25 @@
 	top: 6em;
 	position: relative;
     box-sizing: border-box;
-	animation: scroll 15s linear infinite;
+	animation: scroll 15s linear infinite; /*TODO change*/
+}
+
+.text-on-key {
+    font-family: "Helvetica Neue", Helvetica, Arial;
+   
+    /* TODO: make sure that the text turns upside down, this code should work but text disappears*/
+    /*-webkit-transform: rotate(-180deg); /* Safari */
+    /*-moz-transform: rotate(-180deg); /* Firefox */
+    /*-ms-transform: rotate(-180deg); /* IE */
+    /*-o-transform: rotate(-180deg);  /* Opera */
+    /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
 }
 
 @keyframes scroll {
     0% {
-        top: 8em
+        top: 8em /*TODO change*/
     }
     100% {
-        top: -11em
+        top: -11em /*TODO change*/
     }
 }
