@@ -5,26 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Virtuose</title>
+    
 	<!-- Custom CSS -->
 	<link rel="stylesheet" href="css/style.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- d3 scripts -->
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 </head>
 <body>
-	<div id="canvas">
-		<!-- d3 scripts -->
-		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-		<script>
-			//Make an SVG Container
-			var svgContainer = d3.select("#canvas").append("svg")
-				.attr("width", 200)
-				.attr("height", 400);
-
-			//Draw one rectangle (one note)
-			var rectangle = svgContainer.append("rect")
-				.attr("x", 10)
-				.attr("y", 10)
-				.attr("width", 50)
-				.attr("height", 100);
-		</script>
-	</div>
+    <div id="piano-key"></div>
+    <script src="js/JSKeyDrawer.js"></script>
+    <div id="canvas"></div>
+    <script src="midi-data/test-data.json"></script>
+    <script src="js/JSNoteMapper.js"></script>
 <body>
 </html>

@@ -1,0 +1,5 @@
+[
+    {"pitch": 64, "offset": 2000, "dur": 1000, "vel": 100, "finger": 5},
+    {"pitch": 50, "offset": 3000, "dur": 2000, "vel": 50, "finger": 3},
+    {"pitch": 71, "offset": 1000, "dur": 2000, "vel": 127, "finger": 7}
+]
