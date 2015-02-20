@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="stream.js"></script>
+		<script src="midifile.js"></script>
+		<script src="replayer.js"></script>
+		<script src="synth.js"></script>
+		<script src="audio.js"></script>
+		<script>
+			function loadRemote(path, callback) {
+				var fetch = new XMLHttpRequest();
+				fetch.open('GET', path);
+				fetch.overrideMimeType("text/plain; charset=x-user-defined");
+				fetch.onreadystatechange = function() {
+					if(this.readyState == 4 && this.status == 200) {
+						/* munge response into a binary string */
+						var t = this.responseText || "" ;
+						var ff = [];
+						var mx = t.length;
+						var scc= String.fromCharCode;
+						for (var z = 0; z < mx; z++) {
+							ff[z] = scc(t.charCodeAt(z) & 255);
+						}
+						callback(ff.join(""));
+					}
+				}
+				fetch.send();
+			}
+			
+			function play(file) {
+				loadRemote(file, function(data) {
+					midiFile = MidiFile(data);
+					synth = Synth(44100);
+					replayer = Replayer(midiFile, synth);
+					audio = AudioPlayer(replayer);
+				})
+			}
+
+			if(FileReader){
+				function cancelEvent(e){
+					e.stopPropagation();
+					e.preventDefault();
+				}
+				document.addEventListener('dragenter', cancelEvent, false);
+				document.addEventListener('dragover', cancelEvent, false);
+				document.addEventListener('drop', function(e){
+					cancelEvent(e);
+					for(var i=0;i<e.dataTransfer.files.length;++i){
+						var
+							file = e.dataTransfer.files[i]
+						;
+						if(file.type != 'audio/midi'){
+							continue;
+						}
+						var
+							reader = new FileReader()
+						;
+						reader.onload = function(e){
+							midiFile = MidiFile(e.target.result);
+							synth = Synth(44100);
+							replayer = Replayer(midiFile, synth);
+							audio = AudioPlayer(replayer);
+						};
+						reader.readAsBinaryString(file);
+					}
+				}, false);
+			}
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+		function jsonify(pitch, offset, duration, velocity) {
+			json = {};
+			json["pitch"] = pitch;
+			json["offset"] = offset;
+			json["duration"] = duration;
+			json["velocity"] = velocity;
+			json["finger"] = "?";
+			return json;
+		}; 
+
+		loadRemote("mary.mid", function(data) {
+			midi = MidiFile(data);
+			array = []; // create new track array
+			for (var k = 0; k < midi.tracks.length; k++) {
+				console.log("Track: " + k);
+				track = midi.tracks[k]; // get track k
+				offset = 0; // set offset for track to 0
+				notes = []; // create new notes array
+				for (var i = 0; i < track.length; i++) {
+					event = track[i];
+					// update offset
+					if (event.subtype == "noteOn" || event.subtype == "noteOff") {
+						offset += event.deltaTime;
+					}
+					// search for noteOn event
+					if (event.subtype == "noteOn") {
+						//console.log(event.subtype + ": noteNumber = " + event.noteNumber + ", deltaTime = " + event.deltaTime + ", velocity = " + event.velocity + ", offset = " + offset);
+						duration = 0;//event.deltaTime;
+						for (var j = i + 1; j < track.length; j++) {
+							offEvent = track[j];
+							duration += offEvent.deltaTime;
+							if (event.noteNumber == offEvent.noteNumber && offEvent.subtype == "noteOff") {
+								//console.log(offEvent.subtype + ": noteNumber = " + offEvent.noteNumber + ", deltaTime = " + offEvent.deltaTime + ", velocity = " + offEvent.velocity + ", offset = " + offset);
+								
+								break;
+							}
+						}
+						console.log(event.subtype + ": noteNumber = " + event.noteNumber + ", deltaTime = " + event.deltaTime + ", velocity = " + event.velocity + ", offset = " + offset + ", duration = " + duration);
+						notes.push(jsonify(event.noteNumber, offset, duration, event.velocity));
+					}
+				}
+				// only add notes to track if there were any
+				if (notes.length > 0) {
+					array.push(notes);
+				}
+			}
+		});
+		</script>
+	</body>
+</html>
