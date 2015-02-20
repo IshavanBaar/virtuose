@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<script src="js/jasmid/stream.js"></script>
-		<script src="js/jasmid/midifile.js"></script>
-		<script src="js/jasmid/replayer.js"></script>
-		<script src="js/jasmid/synth.js"></script>
-		<script src="js/jasmid/audio.js"></script>
+		<script src="stream.js"></script>
+		<script src="midifile.js"></script>
+		<script src="replayer.js"></script>
+		<script src="synth.js"></script>
+		<script src="audio.js"></script>
 		<script>
 			function loadRemote(path, callback) {
 				var fetch = new XMLHttpRequest();
@@ -80,7 +80,7 @@
 			return json;
 		}; 
 
-		loadRemote("mid/mary.mid", function(data) {
+		loadRemote("mary.mid", function(data) {
 			midi = MidiFile(data);
 			array = []; // create new track array
 			for (var k = 0; k < midi.tracks.length; k++) {
