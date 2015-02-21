@@ -2,9 +2,9 @@ var screenWidth = $(window).width() - 30;
 var screenHeight = $(window).height(); 
 
 var numberOfKeys = 49;
-var numberOfBlackKeys = 20
+var numberOfBlackKeys = 20;
 var numberOfWhiteKeys = (numberOfKeys - numberOfBlackKeys);
-var keyNames = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+var keyNames = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 
 var container = d3.select("#piano-key")
     .append("svg")
