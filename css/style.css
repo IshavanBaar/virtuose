@@ -1,7 +1,7 @@
 #canvas {
 	position: relative;
     box-sizing: border-box;
-	/*animation: scroll 15s linear infinite; /*TODO change*/
+	animation: scroll 25s linear infinite; /*TODO change*/
 }
 
 .text-on-key {
@@ -15,11 +15,11 @@
     /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
 }
 
-/*@keyframes scroll {
+@keyframes scroll {
     0% {
-        top: 8em 
+        top: 0em 
     }
     100% {
         top: -11em 
     }
-}*/
+}
