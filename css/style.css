@@ -1,7 +1,7 @@
 #canvas {
 	position: relative;
     box-sizing: border-box;
-	animation: scroll 25s linear infinite; /*TODO change*/
+	animation: scroll 8s linear infinite; /*TODO change*/
 }
 
 .text-on-key {
@@ -20,6 +20,6 @@
         top: 0em 
     }
     100% {
-        top: -11em 
+        top: -50em 
     }
 }
