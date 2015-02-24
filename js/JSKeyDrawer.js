@@ -1,4 +1,4 @@
-this.screenWidth = $(window).width() -300; 
+this.screenWidth = $(window).width() - 200; 
 this.screenHeight = $(window).height(); 
 
 //Other variables with dummy values.
