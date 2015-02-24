@@ -11,7 +11,7 @@ this.currentMIDINumbers = [];
 this.currentWhiteMIDINumbers = [];
 this.numberOfWhiteKeys = -1;
 
-this.screenWidth = $(window).width() - 235; 
+this.screenWidth = $(window).width() - 234; 
 this.screenHeight = $(window).height(); 
 this.keyWidth = -1;
 
