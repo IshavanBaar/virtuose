@@ -8,7 +8,7 @@ this.startKey = '';
 this.startOctave = -1;
 this.endKey = '';
 this.endOctave = -1;
-this.keyNames = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+this.keyNames = ['B','A','G','F','E','D','C'];
 
 //Fill other variables accordingly.
 adaptToNumberOfOctaves(4)   //4 octaves now.
@@ -100,6 +100,6 @@ function drawKeyboard() {
             .attr("class", "text-on-key")
             .attr("x", (i / numberOfWhiteKeys) * screenWidth + keyWidth / 2 - beginKeyPosition * keyWidth)
             .attr("y", (screenWidth * 0.21))
-            .text(keyNames[7 - (i % 7)]);  
+            .text(keyNames[i % 7]);  
     }
 }
