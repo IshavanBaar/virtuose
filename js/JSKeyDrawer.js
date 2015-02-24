@@ -99,7 +99,7 @@ function drawKeyboard() {
         var text = container.append("text")
             .attr("class", "text-on-key")
             .attr("x", (i / numberOfWhiteKeys) * screenWidth + keyWidth / 2 - beginKeyPosition * keyWidth)
-            .attr("y", 0)
+            .attr("y", 10)
             .text(keyNames[i % 7]);  
     }
 }
