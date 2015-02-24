@@ -6,7 +6,7 @@
 
 .text-on-key {
     font-family: "Helvetica Neue", Helvetica, Arial;
-   
+    font-size: 8px;
     /* TODO: make sure that the text turns upside down, this code should work but text disappears*/
     /*-webkit-transform: rotate(-180deg); /* Safari */
     /*-moz-transform: rotate(-180deg); /* Firefox */
