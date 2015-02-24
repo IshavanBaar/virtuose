@@ -124,11 +124,11 @@ function getKeyXPosition(note) {
     if (pitchIsInKeyRange(pitch)) {     
         //Key should be on position of index in array times the width of one key.
         if (pitchIsWhiteKey(pitch)) {
-            xPosition = currentWhiteMIDINumbers.indexOf(pitch) * keyWidth;
+            xPosition = (currentWhiteMIDINumbers.length - 1 - currentWhiteMIDINumbers.indexOf(pitch)) * keyWidth;
         } 
         //Key should be on position of index-1 in array times the width of one key + 1/2 width.
         else {
-            xPosition = currentWhiteMIDINumbers.indexOf(pitch-1) * keyWidth + (3/4) * keyWidth;
+            xPosition = (currentWhiteMIDINumbers.length - 1 - currentWhiteMIDINumbers.indexOf(pitch+1)) * keyWidth + (3/4) * keyWidth;
         } 
     }
     return xPosition;
