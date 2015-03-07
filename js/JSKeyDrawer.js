@@ -8,7 +8,7 @@ this.startKey = '';
 this.startOctave = -1;
 this.endKey = '';
 this.endOctave = -1;
-this.keyNames = ['B','A','G','F','E','D','C'];
+this.keyNames = ['b','a','g','f','e','d','c'];
 
 //Fill other variables accordingly.
 adaptToNumberOfOctaves(4)   //4 octaves now.
@@ -102,4 +102,5 @@ function drawKeyboard() {
             .attr("y", 10)
             .text(keyNames[i % 7]);  
     }
+
 }

@@ -224,3 +224,11 @@ JSMIDIParser = {
 		return MIDI;
 	}
 };
+
+function fillCookie() {
+    var handSelection = $('input[name=hand-selection]:checked').val();
+    document.cookie = 'handSelection=' + handSelection;
+    
+    var tempoSelection = $('input[name=tempo-selection]:checked').val();
+    document.cookie = 'tempoSelection=' + tempoSelection;
+}

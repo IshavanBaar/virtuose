@@ -1,18 +1,36 @@
+/*
+    Title, subtitle, footer
+*/
+.black-header {
+	color: #000000; 
+}
+
+#authors {
+    float: right;
+    font-size: 16px;
+    color: #808080;
+    margin-top: 20px;
+}
+
+footer {
+	float: right;
+    font-size: 10px;
+    color: #aea0a0;
+    margin-top: 20px;
+}
+
+#subtitle {
+	font-style: italic;
+    color: #808080;
+}
+
+/*
+    Scrolling canvas
+*/
 #canvas {
 	position: relative;
     box-sizing: border-box;
-	animation: scroll 8s linear infinite; /*TODO change*/
-}
-
-.text-on-key {
-    font-family: "Helvetica Neue", Helvetica, Arial;
-    font-size: 8px;
-    /* TODO: make sure that the text turns upside down, this code should work but text disappears*/
-    /*-webkit-transform: rotate(-180deg); /* Safari */
-    /*-moz-transform: rotate(-180deg); /* Firefox */
-    /*-ms-transform: rotate(-180deg); /* IE */
-    /*-o-transform: rotate(-180deg);  /* Opera */
-    /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
+	animation: scroll 8s linear infinite; /*Tempo can be changed here*/
 }
 
 @keyframes scroll {
@@ -23,3 +41,16 @@
         top: -50em 
     }
 }
+
+/*Text on keys*/
+.text-on-key {
+    font-family: "Helvetica Neue", Helvetica, Arial;
+    font-size: 8px;
+    /* TODO: make sure that the text turns upside down, the code below should work but text disappears*/
+    /*-webkit-transform: rotate(-180deg); /* Safari */
+   /* -moz-transform: rotate(-180deg); /* Firefox */
+    /*-ms-transform: rotate(-180deg); /* IE */
+    /*-o-transform: rotate(-180deg);  /* Opera */
+    /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
+}
+
