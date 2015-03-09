@@ -30,7 +30,7 @@ footer {
 #canvas {
 	position: relative;
     box-sizing: border-box;
-	animation: scroll 8s linear infinite; /*Tempo can be changed here*/
+	animation: scroll 4s linear infinite; /*Tempo can be changed here*/
 }
 
 @keyframes scroll {

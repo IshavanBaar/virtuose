@@ -20,7 +20,7 @@ this.handsShown = '';
 this.tempo = 'Normal';
 
 //Map the notes to their place.
-$.getJSON("mid/test-data.json", function mapNotes(data) {
+$.getJSON("mid/passenger.json", function mapNotes(data) {
     alert('u');
     //Current keyboard has 4 octaves.
     initializeForNumberOfOctaves(4);
@@ -50,7 +50,7 @@ $.getJSON("mid/test-data.json", function mapNotes(data) {
             if (pitchIsWhiteKey(d.pitch)) {return keyWidth;}    //White key width is default width.
             else {return keyWidth/2;}                         //Black key width is default width/2.
         })
-        .attr("height", function (d) {return d.dur / 10; })         // TODO how long should the note be?
+        .attr("height", function (d) {return d.duration / 10; })         // TODO how long should the note be?
         .style("fill", /*function (d) {return mapFingerToColor(d.finger)}*/ "black")
 });
     
