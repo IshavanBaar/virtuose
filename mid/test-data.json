@@ -5,7 +5,7 @@
     {"pitch": 72, "offset": 3000, "dur": 1000, "vel": 127, "finger": 7},
     {"pitch": 75, "offset": 3000, "dur": 1000, "vel": 127, "finger": 7},
     {"pitch": 24, "offset": 4000, "dur": 1000, "vel": 100, "finger": 5},
-    {"pitch": 25, "offset": 5000, "dur": 1000, "vel": 100, "finger": 5},
+    {"pitch": 25, "offset": 3000, "dur": 1000, "vel": 100, "finger": 5},
     {"pitch": 26, "offset": 6000, "dur": 1000, "vel": 50, "finger": 3},
     {"pitch": 72, "offset": 7000, "dur": 1000, "vel": 127, "finger": 7},
     {"pitch": 75, "offset": 8000, "dur": 1000, "vel": 127, "finger": 7}
