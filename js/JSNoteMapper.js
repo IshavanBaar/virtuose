@@ -21,6 +21,7 @@ this.tempo = 'Normal';
 
 //Map the notes to their place.
 $.getJSON("mid/test-data.json", function mapNotes(data) {
+    alert('u');
     //Current keyboard has 4 octaves.
     initializeForNumberOfOctaves(4);
     //Initialize the variables for the selection of the user.
@@ -50,7 +51,7 @@ $.getJSON("mid/test-data.json", function mapNotes(data) {
             else {return keyWidth/2;}                         //Black key width is default width/2.
         })
         .attr("height", function (d) {return d.dur / 10; })         // TODO how long should the note be?
-        .style("fill", function (d) {return mapFingerToColor(d.finger)})
+        .style("fill", /*function (d) {return mapFingerToColor(d.finger)}*/ "black")
 });
     
 //Set all variables, given a keyboard with a number of octaves.
