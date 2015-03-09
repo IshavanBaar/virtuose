@@ -10,10 +10,19 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-    
-    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- JQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
+    
+    <!-- File chooser -->
+    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
     <script src="js/fileinput.min.js" type="text/javascript"></script>
+    
+    <!-- Jasmid for parsing MIDI file -->
+    <script src="js/jasmid/stream.js"></script>
+    <script src="js/jasmid/midifile.js"></script>
+    <script src="js/jasmid/replayer.js"></script>
+    <script src="js/jasmid/synth.js"></script>
+    <script src="js/jasmid/audio.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -26,48 +35,64 @@
             </div>
         </div>
         <div class="row">
-            <h3>Select MIDI song</h3>
+            <div class="col-md-8">
+                <h3>Select MIDI song</h3>
+            </div>
         </div>
         <div class="row">
-            <input id="input" type="file" class="file" data-show-preview="false" data-show-upload="false">
-            <script src="js/JSMIDIparser.js"></script>
-            <script>
-                var midi = new Object();
-                // Your callback function
-                function MyCallback(obj){
-                    console.log("%o", obj);
-                    midi = obj;
-                };
+            <div class="col-md-6">
+                <input id="input" type="file" class="file" data-show-preview="false" data-show-upload="false">
+                <script src="js/JSMIDIparser.js"></script>
+                <script>
+                    var midi = new Object();
+                    // Your callback function
+                    function MyCallback(obj){
+                        console.log("%o", obj);
+                        midi = obj;
+                    };
 
-                // JSMIDIParser
-                JSMIDIParser.IO('filereader', MyCallback);
-            </script>
+                    // JSMIDIParser
+                    JSMIDIParser.IO('filereader', MyCallback);
+                </script>
+            </div>
         </div>
         <div class="row">
-            <h3>Select hand(s)</h3>
+            <div class="col-md-8">
+                <h3>Select hands</h3>
+            </div>
         </div>
         <div class="row">
-            <form name="hand-selection-form">
-              <input type="radio" name="hand-selection" value="Left"> Left<br>
-              <input type="radio" name="hand-selection" value="Right"> Right<br>
-              <input type="radio" name="hand-selection" value="Left+Right"> Left + Right
-            </form>
+            <div class="col-md-8">
+                <form name="hand-selection-form">
+                  <input type="radio" name="hand-selection" value="Left"> Left<br>
+                  <input type="radio" name="hand-selection" value="Right"> Right<br>
+                  <input type="radio" name="hand-selection" value="Left+Right"> Left + Right
+                </form>
+            </div>
         </div>
         <div class="row">
-            <h3>Select tempo</h3>
+            <div class="col-md-8">
+                <h3>Select tempo</h3>
+            </div>
         </div>
         <div class="row">
-            <form name="tempo-selection-form">
-              <input type="radio" name="tempo-selection" value="Slow"> Slow<br>
-              <input type="radio" name="tempo-selection" value="Normal"> Normal<br>
-              <input type="radio" name="tempo-selection" value="Fast"> Fast
-            </form>
+            <div class="col-md-8">
+                <form name="tempo-selection-form">
+                  <input type="radio" name="tempo-selection" value="Slow"> Slow<br>
+                  <input type="radio" name="tempo-selection" value="Normal"> Normal<br>
+                  <input type="radio" name="tempo-selection" value="Fast"> Fast
+                </form>
+            </div>
         </div>
         <div class="row">
-            <h3>Get ready</h3>
+            <div class="col-md-8">
+                <h3>Get ready</h3>
+            </div>
         </div>
         <div class="row">
-            <button class="btn btn-primary" onclick="fillCookie(); location.href='notes-view.html'">Start to play</button>
+            <div class="col-md-8">
+                <button class="btn btn-primary" onclick="fillCookie(); location.href='notes-view.html'">Start to play</button>
+            </div>
         </div>
         <div class="row">
             <!-- Our inspirations -->
