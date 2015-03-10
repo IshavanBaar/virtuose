@@ -104,3 +104,32 @@ function drawKeyboard() {
     }
 
 }
+
+//Add listener for custom events.
+document.addEventListener('build', function eventHandler(e) {
+    var splitString = e.detail.split(',');
+    alert('The pitch is: ' + splitString[0] + ', the note is: ' + splitString[1]);
+}, false);
+
+//Create note event.
+function createNoteEvent(onOrOff) {
+    var noteEvent;
+    
+    noteEvent = new CustomEvent('build', { 'detail': '24,'+onOrOff});
+    
+    return noteEvent;  
+}
+
+var noteOnOrOff = 'on';
+// The first key will be played for 3 seconds, then left off for 3 seconds, etc.
+setInterval(function() {
+    if (noteOnOrOff === 'on') {
+        var noteOn = createNoteEvent('on');   
+        document.dispatchEvent(noteOn);
+        noteOnOrOff = 'off';
+    } else { 
+        var noteOff = createNoteEvent('off');   
+        document.dispatchEvent(noteOff);
+        noteOnOrOff = 'on';
+    }
+}, 5000);
