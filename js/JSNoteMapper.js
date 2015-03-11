@@ -178,10 +178,9 @@ function initializeUserSelection() {
     setTempo(tempo);
 }
 
-
+var tempoOfAnimation = '';
 //Sets tempo in css to slow, normal or fast.
 function setTempo(tempo) {
-    var tempoOfAnimation = '';
     if (tempo === 'Slow') {
         tempoOfAnimation = 16;
     } else if (tempo === 'Normal') {
@@ -189,11 +188,14 @@ function setTempo(tempo) {
     } else if (tempo === 'Fast') {
         tempoOfAnimation = 4;
     }
-    $('#canvas').css("animation", "scroll "+tempoOfAnimation+"s linear infinite");
 }
 
 //Gets value of the key in the cookie.
 function getCookieItem(key) {
     if (!key) { return null; }
     return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") +      "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+}
+
+function startAnimation() {
+    $('#canvas').css("animation", "scroll "+tempoOfAnimation+"s linear infinite");
 }
