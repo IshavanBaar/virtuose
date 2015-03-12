@@ -12,26 +12,48 @@ this.currentWhiteMIDINumbers = [];
 this.numberOfWhiteKeys = -1;
 
 this.screenWidth = $(window).width() - 234; 
-this.screenHeight = $(window).height(); 
+this.screenHeight = $(window).height();
+this.songHeight = -1;
 this.keyWidth = -1;
+
+
+//overvire variables
+this.overviewWidth = 234;
+this.overviewHeight = $(window).height();
+overviewKeyWidth = -1
+
+this.overviewXscale = overviewWidth / screenWidth;
+this.overviewYscale = -1;
+
+
 
 //Variables for user selection
 this.handsShown = '';
 this.tempo = 'Normal';
 
+
+
 //Map the notes to their place.
 $.getJSON("mid/passenger.json", function mapNotes(data) {
     //Current keyboard has 4 octaves.
     initializeForNumberOfOctaves(4);
+    calculateSongHeight(data);
     //Initialize the variables for the selection of the user.
     initializeUserSelection();
-    
+    //sets up the overview 
+    initializeOverview();
+    setScrollSpeed();
     //Make an SVG Container
     var svgContainer = d3.select("#canvas")
         .append("svg")
         .attr("width", screenWidth)
-        .attr("height", 3000);
+        .attr("height", songHeight);
     
+    var overviewContainer = d3.select("#overview")
+        .append("svg")
+        .attr("width", overviewWidth)
+        .attr("height", screenHeight);  
+
     var notesInRange = [];
     for (var i = 0; i < data.length; i++) {
         if (data[i].pitch >= lowerKey && data[i].pitch <= higherKey) {
@@ -51,6 +73,17 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
         })
         .attr("height", function (d) {return d.duration / 10; })         // TODO how long should the note be?
         .style("fill", function (d) {return mapFingerToColor(d.finger)})
+
+    var overviewNote = overviewContainer.selectAll("g").data(notesInRange).enter().append("rect")  
+        .attr("x", function (d) {return getOverviewKeyXPosition(d);})
+        .attr("y", function (d) {return (d.offset / 10)*overviewYscale;})
+        .attr("width", function (d) {
+            if (pitchIsWhiteKey(d.pitch)) {return overviewKeyWidth;}    //White key width is default width.
+            else {return (overviewKeyWidth/2);}                           //Black key width is default width/2.
+        })
+        .attr("height", function (d) {return (d.duration / 10)*overviewYscale; })         // TODO how long should the note be?
+        .style("fill", function (d) {return mapFingerToColor(d.finger)})
+
 });
     
 //Set all variables, given a keyboard with a number of octaves.
@@ -60,6 +93,7 @@ function initializeForNumberOfOctaves(numberOfOctaves) {
     setMIDINumberVariables();                                      
     calculateNumberOfWhiteKeys();
     calculateKeyWidth();
+    calculateOverviewKeyWidth();
 }
 
 function setMIDINumberVariables() {
@@ -142,6 +176,11 @@ function getKeyXPosition(note) {
     }
     return xPosition;
 }
+//calculates song height
+function calculateSongHeight(data) {
+    songHeight = (218112 + data[data.length-1].duration) / 10;
+    overviewYscale = screenHeight / songHeight;
+}
 
 //Returns true iff pitch is a white key.
 function pitchIsWhiteKey(pitch) {
@@ -198,4 +237,78 @@ function getCookieItem(key) {
 
 function startAnimation() {
     $('#canvas').css("animation", "scroll "+tempoOfAnimation+"s linear infinite");
+}
+
+function setScrollSpeed() {
+    $("#canvas").removeAttr("animation").css("animation", "scroll "+songHeight / 100+"s linear infinite"); //length of the track.
+
+    //Set the speed of the scrolling
+    var cssAnimation = document.createElement('style');
+    cssAnimation.type = 'text/css';
+    var rules = document.createTextNode('@-webkit-keyframes scroll {'+
+    '0% { top: 0px }'+
+    '100% { top: -'+songHeight+'px; }'+
+    '}'+
+    '@keyframes scroll {'+
+    '0% { top: 0px }'+
+    '100% { top: -'+songHeight+'px; }'+
+    '}');
+    cssAnimation.appendChild(rules);
+    $("#canvas").append(cssAnimation);
+
+    $("#overviewTracker").removeAttr("animation").css("animation", "scroll2 "+songHeight / 100+"s linear infinite"); //length of the track.
+
+    //Set the speed of the scrolling
+    var cssAnimation = document.createElement('style');
+    cssAnimation.type = 'text/css';
+    var rules = document.createTextNode('@-webkit-keyframes scroll2 {'+
+    '0% { top: 0px }'+
+    '100% { top: '+screenHeight+'px; }'+
+    '}'+
+    '@keyframes scroll2 {'+
+    '0% { top: 0px }'+
+    '100% { top: '+screenHeight+'px; }'+
+    '}');
+    cssAnimation.appendChild(rules);
+    $("#overviewTracker").append(cssAnimation);
+}       
+
+/* OVERVIEW FUNCTIONS */
+
+//Calculates overview key width.
+function calculateOverviewKeyWidth() {
+    overviewKeyWidth = overviewWidth / numberOfWhiteKeys;
+}
+
+//Returns x position of overview note.
+function getOverviewKeyXPosition(note) {
+    var pitch = note.pitch;
+    var xPosition = -1;
+    
+    //Only if note is in number range for keyboard, continue.
+    if (pitchIsInKeyRange(pitch)) {     
+        //Key should be on position of index in array times the width of one key.
+        if (pitchIsWhiteKey(pitch)) {
+            xPosition = (currentWhiteMIDINumbers.length - 1 - currentWhiteMIDINumbers.indexOf(pitch)) * overviewKeyWidth;
+        } 
+        //Key should be on position of index-1 in array times the width of one key + 1/2 width.
+        else {
+            xPosition = (currentWhiteMIDINumbers.length - 1 - currentWhiteMIDINumbers.indexOf(pitch+1)) * overviewKeyWidth + (3/4) * overviewKeyWidth;
+        } 
+    }
+    return xPosition;
+}
+function initializeOverview() {
+    //set size of overview
+    $(function() {
+        $("#overview")
+                .width(overviewWidth-keyWidth)
+                .height(screenHeight)
+                .css("top",0-(songHeight+50+screenHeight/3)); //hardcoded =(
+    });
+
+    //set size of overview tracker
+    $(function() {
+        $("#overviewTracker").width(overviewWidth-keyWidth).height(songHeight/screenHeight);     
+    });     
 }
