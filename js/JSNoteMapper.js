@@ -198,16 +198,16 @@ function pitchIsInKeyRange(pitch) {
 //Maps fingers to colors.
 function mapFingerToColor(finger) {
     var col; 
-    if (finger=== 1){col="purple"}
-    else if (finger === 2) {col = "purple"}
-    else if (finger === 3) {col = "purple"}
-    else if (finger === 4) {col = "purple"}
-    else if (finger === 5) {col = "purple"}
-    else if (finger === 6) {col = "green"}
-    else if (finger === 7) {col = "red"}
-    else if (finger === 8) {col = "blue"}
-    else if (finger === 9) {col = "orange"}
-    else if (finger === 10) {col = "yellow"} 
+    if (finger=== 1){col="#A800E8"}
+    else if (finger === 2) {col="#A800E8"}
+    else if (finger === 3) {col = "#A800E8"}
+    else if (finger === 4) {col = "#A800E8"}
+    else if (finger === 5) {col = "#A800E8"}
+    else if (finger === 6) {col = "#E8DB00"}
+    else if (finger === 7) {col = "#FF7F00"}
+    else if (finger === 8) {col = "#E80086"}
+    else if (finger === 9) {col = "#0072FF"}
+    else if (finger === 10) {col = "#00FFD3"}
     return col; 
 }
 

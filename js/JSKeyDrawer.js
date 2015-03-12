@@ -151,8 +151,8 @@ document.addEventListener('build', function eventHandler(e) {
     var timeSinceStart = new Date().getTime() - milliSeconds;
     
     if (incomingOnOff === 'on') {
-        if(noteShouldBeOn(timeSinceStart, incomingPitch)) {colorRectangle('green', incomingPitch)}
-        else {colorRectangle('red', incomingPitch)}
+        if(noteShouldBeOn(timeSinceStart, incomingPitch)) {colorRectangle('#D8170B', incomingPitch)}
+        else {colorRectangle('#D8170B', incomingPitch)}
     } else if (incomingOnOff === 'off') {
         colorRectangle('white', incomingPitch)
     }
