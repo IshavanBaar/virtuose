@@ -22,12 +22,12 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
 });
 timer(
     6000, // milliseconds
-    /*function(timeleft) { // called every step to update the visible countdown
-        $('#timer').html(timeleft+"");
-    },*/
+    function(timeleft) { // called every step to update the visible countdown
+       // $('#timer').html(timeleft+"");
+    },
     function() { // what to do after
         dispatchNoteEvents();
-        $('#timer').html("");
+        //$('#timer').html("");
         startAnimation();
         this.milliSeconds = new Date().getTime();
     }
