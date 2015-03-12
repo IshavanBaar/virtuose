@@ -14,9 +14,6 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 </head>
 <body>
-    <?php
-    echo "Hey there!";
-    ?>
     <div id="div-container">
         <div id="piano-key"></div>
         <script src="js/JSKeyDrawer.js"></script>
