@@ -56,7 +56,7 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
 
     var notesInRange = [];
     for (var i = 0; i < data.length; i++) {
-        data[i].pitch = data[i].pitch - 7;
+        data[i].pitch = data[i].pitch - 12;
         if (data[i].pitch >= lowerKey && data[i].pitch <= higherKey) {
             
             // Only push the notes in the array that match with the user hands selection
@@ -161,7 +161,7 @@ function calculateKeyWidth() {
 
 //Returns x position of key note.
 function getKeyXPosition(note) {
-    var pitch = note.pitch - 7;
+    var pitch = note.pitch - 12;
     var xPosition = -1;
     
     //Only if note is in number range for keyboard, continue.
