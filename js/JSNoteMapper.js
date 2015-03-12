@@ -54,8 +54,10 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
         .attr("width", overviewWidth)
         .attr("height", screenHeight);  
         var lowest = 100000;
+    
     var notesInRange = [];
     for (var i = 0; i < data.length; i++) {
+        data[i].pitch = data[i].pitch - 12;
         if (data[i].pitch >= lowerKey && data[i].pitch <= higherKey) {  
             // Only push the notes in the array that match with the user hands selection
             if (handsShown === 'Left') { if (data[i].finger < 6) { notesInRange.push(data[i]); }}
@@ -72,9 +74,11 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
             if (pitchIsWhiteKey(d.pitch)) {return keyWidth;}    //White key width is default width.
             else {return keyWidth/2;}                           //Black key width is default width/2.
         })
-        .attr("height", function (d) {return d.duration / 10; })         // TODO how long should the note be?
+        .attr("height", function (d) {return d.duration / 10; })  
         .style("fill", function (d) {return mapFingerToColor(d.finger)})
-
+        .style("stroke", "white")
+        .style("stroke-width", "2px");
+    
     var overviewNote = overviewContainer.selectAll("g").data(notesInRange).enter().append("rect")  
         .attr("x", function (d) {return getOverviewKeyXPosition(d);})
         .attr("y", function (d) {return (d.offset / 10)*overviewYscale;})
@@ -83,8 +87,7 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
             else {return (overviewKeyWidth/2);}                           //Black key width is default width/2.
         })
         .attr("height", function (d) {return (d.duration / 10)*overviewYscale; })         // TODO how long should the note be?
-        .style("fill", function (d) {return mapFingerToColor(d.finger)})
-
+        .style("fill", function (d) {return mapFingerToColor(d.finger)});
 });
     
 //Set all variables, given a keyboard with a number of octaves.
@@ -161,7 +164,7 @@ function calculateKeyWidth() {
 
 //Returns x position of key note.
 function getKeyXPosition(note) {
-    var pitch = note.pitch;
+    var pitch = note.pitch - 12;
     var xPosition = -1;
     
     //Only if note is in number range for keyboard, continue.
