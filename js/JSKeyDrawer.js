@@ -174,6 +174,8 @@ function noteShouldBeOn(timeSinceStart, pitch) {
 function colorRectangle(color, incomingPitch) {
     var rectangleId = 'key' + pitchToNoteNumber(incomingPitch); 
     $('#' + rectangleId).css('fill', color);
+
+
 }
 
 //Converts pitch to notenumber (e.g. 24 to C2).

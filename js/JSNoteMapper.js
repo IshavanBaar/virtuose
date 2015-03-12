@@ -248,11 +248,11 @@ function startAnimation() {
     var cssAnimation = document.createElement('style');
     cssAnimation.type = 'text/css';
     var rules = document.createTextNode('@-webkit-keyframes scroll {'+
-    '0% { top: 0px }'+
+    '0% { top: '+songHeight/screenHeight+'px }'+
     '100% { top: -'+songHeight+'px; }'+
     '}'+
     '@keyframes scroll {'+
-    '0% { top: 0px }'+
+    '0% { top: '+songHeight/screenHeight+'px }'+
     '100% { top: -'+songHeight+'px; }'+
     '}');
     cssAnimation.appendChild(rules);
