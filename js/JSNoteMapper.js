@@ -195,11 +195,11 @@ function pitchIsInKeyRange(pitch) {
 //Maps fingers to colors.
 function mapFingerToColor(finger) {
     var col; 
-    if (finger=== 1){col="green"}
-    else if (finger === 2) {col = "red"}
-    else if (finger === 3) {col = "blue"}
-    else if (finger === 4) {col = "orange"}
-    else if (finger === 5) {col = "yellow"}
+    if (finger=== 1){col="purple"}
+    else if (finger === 2) {col = "purple"}
+    else if (finger === 3) {col = "purple"}
+    else if (finger === 4) {col = "purple"}
+    else if (finger === 5) {col = "purple"}
     else if (finger === 6) {col = "green"}
     else if (finger === 7) {col = "red"}
     else if (finger === 8) {col = "blue"}
@@ -282,7 +282,7 @@ function calculateOverviewKeyWidth() {
 
 //Returns x position of overview note.
 function getOverviewKeyXPosition(note) {
-    var pitch = note.pitch;
+    var pitch = note.pitch - 7;
     var xPosition = -1;
     
     //Only if note is in number range for keyboard, continue.
