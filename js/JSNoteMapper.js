@@ -56,6 +56,7 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
 
     var notesInRange = [];
     for (var i = 0; i < data.length; i++) {
+        data[i].pitch = data[i].pitch - 7;
         if (data[i].pitch >= lowerKey && data[i].pitch <= higherKey) {
             
             // Only push the notes in the array that match with the user hands selection
@@ -72,7 +73,7 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
             else {return keyWidth/2;}                           //Black key width is default width/2.
         })
         .attr("height", function (d) {return d.duration / 10; })         // TODO how long should the note be?
-        .style("fill", function (d) {return mapFingerToColor(d.finger)})
+        .style("fill", function (d) {return mapFingerToColor(d.finger)});
 
     var overviewNote = overviewContainer.selectAll("g").data(notesInRange).enter().append("rect")  
         .attr("x", function (d) {return getOverviewKeyXPosition(d);})
@@ -82,7 +83,7 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
             else {return (overviewKeyWidth/2);}                           //Black key width is default width/2.
         })
         .attr("height", function (d) {return (d.duration / 10)*overviewYscale; })         // TODO how long should the note be?
-        .style("fill", function (d) {return mapFingerToColor(d.finger)})
+        .style("fill", function (d) {return mapFingerToColor(d.finger)});
 
 });
     
@@ -160,7 +161,7 @@ function calculateKeyWidth() {
 
 //Returns x position of key note.
 function getKeyXPosition(note) {
-    var pitch = note.pitch;
+    var pitch = note.pitch - 7;
     var xPosition = -1;
     
     //Only if note is in number range for keyboard, continue.
@@ -282,7 +283,7 @@ function calculateOverviewKeyWidth() {
 
 //Returns x position of overview note.
 function getOverviewKeyXPosition(note) {
-    var pitch = note.pitch - 14;
+    var pitch = note.pitch;
     var xPosition = -1;
     
     //Only if note is in number range for keyboard, continue.
