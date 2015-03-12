@@ -305,7 +305,7 @@ function initializeOverview() {
         $("#overview")
                 .width(overviewWidth-keyWidth)
                 .height(screenHeight)
-                .css("top",0-(songHeight+50+screenHeight/3)); //hardcoded =(
+                .css("top",0); //hardcoded =(
     });
 
     //set size of overview tracker

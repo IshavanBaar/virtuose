@@ -22,9 +22,9 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
 });
 timer(
     6000, // milliseconds
-    function(timeleft) { // called every step to update the visible countdown
+    /*function(timeleft) { // called every step to update the visible countdown
         $('#timer').html(timeleft+"");
-    },
+    },*/
     function() { // what to do after
         dispatchNoteEvents();
         $('#timer').html("");
@@ -128,7 +128,7 @@ function drawKeyboard() {
             .attr("height", (screenWidth * 0.21))
             .style("stroke", "#000000")
             .style("stroke-width", 2)
-            .style("fill", "none");
+            .style("fill", "white");
 
         var text = container.append("text")
             .attr("class", "text-on-key")
@@ -173,7 +173,7 @@ function noteShouldBeOn(timeSinceStart, pitch) {
 //Gives rectangle with id based on incoming pitch color color.
 function colorRectangle(color, incomingPitch) {
     var rectangleId = 'key' + pitchToNoteNumber(incomingPitch); 
-    $('#' + rectangleId).css('fill', color);
+    $('#' + rectangleId).removeAttr("fill").css('fill', color);
 }
 
 //Converts pitch to notenumber (e.g. 24 to C2).

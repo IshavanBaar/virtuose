@@ -24,20 +24,25 @@ footer {
     color: #808080;
 }
 
+#div-container {
+    position: relative;
+}
+
 #piano-key {
-    
+    position: absolute;
+    z-index: 2;
 }
 
 /*
     Scrolling canvas
 */
 #canvas {
-	position: relative;
+	position: absolute;
+    z-index: 1;
     box-sizing: border-box;
     -webkit-animation: scroll 10s linear infinite;
 	animation: scroll 10s linear infinite; /*Tempo can be changed here*/
 }
-
 
 /*Text on keys*/
 .text-on-key {
@@ -52,9 +57,13 @@ footer {
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3); /* Internet Explorer */
 }
 #overview {
-    position: relative;
+    position: absolute;
+    z-index: 1;
     float: right;
-   }
+    right: 0px;
+}
+
+
 #overviewTracker {
     position: relative;
     background-color: rgb(50,50,50);
