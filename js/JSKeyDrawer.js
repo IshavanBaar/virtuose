@@ -104,7 +104,7 @@ function drawKeyboard() {
         .attr("height", screenHeight / 3);
 
     //Line that represents keyboard length  
-    var keyboardLengthLine = container.append("line")
+    /*var keyboardLengthLine = container.append("line")
         .attr("x1", 0)
         .attr("y1", (screenHeight / 3) - 1)
         .attr("x2", screenWidth - 1 )
@@ -112,7 +112,7 @@ function drawKeyboard() {
         //Style
         .style("stroke", "#000000")
         .style("stroke-width", 5)
-        .style("stroke-opacity", 0.6);
+        .style("stroke-opacity", 0.6);*/
 
     var beginKeyPosition = keyNames.indexOf(startKey);
     
@@ -151,7 +151,7 @@ document.addEventListener('build', function eventHandler(e) {
     var timeSinceStart = new Date().getTime() - milliSeconds;
     
     if (incomingOnOff === 'on') {
-        if(noteShouldBeOn(timeSinceStart, incomingPitch)) {colorRectangle('#D8170B', incomingPitch)}
+        if(noteShouldBeOn(timeSinceStart, incomingPitch)) {colorRectangle('#3FBB3C', incomingPitch)}
         else {colorRectangle('#D8170B', incomingPitch)}
     } else if (incomingOnOff === 'off') {
         colorRectangle('white', incomingPitch)
@@ -185,7 +185,7 @@ function pitchToNoteNumber(pitch) {
 
 //Create random note event.
 function createNoteEvent(onOrOff) {
-    var noteEvent = new CustomEvent('build', { 'detail': '60,'+onOrOff});
+    var noteEvent = new CustomEvent('build', { 'detail': '69,'+onOrOff});
     return noteEvent;  
 }
 
@@ -203,5 +203,5 @@ function dispatchNoteEvents() {
             document.dispatchEvent(noteOff);
             noteOnOrOff = 'on';
         }
-    }, 4096);
+    }, 3072);
 }
