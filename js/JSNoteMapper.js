@@ -73,7 +73,9 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
             else {return keyWidth/2;}                           //Black key width is default width/2.
         })
         .attr("height", function (d) {return d.duration / 10; })         // TODO how long should the note be?
-        .style("fill", function (d) {return mapFingerToColor(d.finger)});
+        .style("fill", function (d) {return mapFingerToColor(d.finger)})
+        .style("stroke", "white")
+        .style("stroke-width", "2px");
 
     var overviewNote = overviewContainer.selectAll("g").data(notesInRange).enter().append("rect")  
         .attr("x", function (d) {return getOverviewKeyXPosition(d);})
