@@ -282,11 +282,11 @@ function calculateOverviewKeyWidth() {
 
 //Returns x position of overview note.
 function getOverviewKeyXPosition(note) {
-    var pitch = note.pitch - 7;
+    var pitch = note.pitch - 14;
     var xPosition = -1;
     
     //Only if note is in number range for keyboard, continue.
-    if (pitchIsInKeyRange(pitch)) {     
+    //if (pitchIsInKeyRange(pitch)) {     
         //Key should be on position of index in array times the width of one key.
         if (pitchIsWhiteKey(pitch)) {
             xPosition = (currentWhiteMIDINumbers.length - 1 - currentWhiteMIDINumbers.indexOf(pitch)) * overviewKeyWidth;
@@ -295,7 +295,7 @@ function getOverviewKeyXPosition(note) {
         else {
             xPosition = (currentWhiteMIDINumbers.length - 1 - currentWhiteMIDINumbers.indexOf(pitch+1)) * overviewKeyWidth + (3/4) * overviewKeyWidth;
         } 
-    }
+    //}
     return xPosition;
 }
 function initializeOverview() {
