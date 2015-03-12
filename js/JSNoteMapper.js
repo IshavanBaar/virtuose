@@ -38,11 +38,11 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
     //Current keyboard has 4 octaves.
     initializeForNumberOfOctaves(4);
     calculateSongHeight(data);
+
     //Initialize the variables for the selection of the user.
     initializeUserSelection();
     //sets up the overview 
     initializeOverview();
-    setScrollSpeed();
     //Make an SVG Container
     var svgContainer = d3.select("#canvas")
         .append("svg")
@@ -53,15 +53,16 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
         .append("svg")
         .attr("width", overviewWidth)
         .attr("height", screenHeight);  
-
+        var lowest = 100000;
     var notesInRange = [];
     for (var i = 0; i < data.length; i++) {
-        if (data[i].pitch >= lowerKey && data[i].pitch <= higherKey) {
-            
+        if (data[i].pitch >= lowerKey && data[i].pitch <= higherKey) {  
             // Only push the notes in the array that match with the user hands selection
             if (handsShown === 'Left') { if (data[i].finger < 6) { notesInRange.push(data[i]); }}
             else if (handsShown === 'Right') { if(data[i].finger > 5) { notesInRange.push(data[i]); }}
             else {notesInRange.push(data[i]);}
+        } else {
+            console.log("pitch: "+ data[i].pitch + "offset: " + data[i].offset);
         }
     }
     var note = svgContainer.selectAll("g").data(notesInRange).enter().append("rect")  
@@ -178,7 +179,7 @@ function getKeyXPosition(note) {
 }
 //calculates song height
 function calculateSongHeight(data) {
-    songHeight = (218112 + data[data.length-1].duration) / 10;
+    songHeight = (218112 + 3072) / 10; //hardcoded, json is not sorted so had to exttract data from last note
     overviewYscale = screenHeight / songHeight;
 }
 
@@ -221,11 +222,11 @@ var tempoOfAnimation = '';
 //Sets tempo in css to slow, normal or fast.
 function setTempo(tempo) {
     if (tempo === 'Slow') {
-        tempoOfAnimation = 16;
+        tempoOfAnimation = 2;
     } else if (tempo === 'Normal') {
-        tempoOfAnimation = 8;
+        tempoOfAnimation = 1;
     } else if (tempo === 'Fast') {
-        tempoOfAnimation = 4;
+        tempoOfAnimation = 0.5;
     }
 }
 
@@ -236,11 +237,9 @@ function getCookieItem(key) {
 }
 
 function startAnimation() {
-    $('#canvas').css("animation", "scroll "+tempoOfAnimation+"s linear infinite");
-}
-
-function setScrollSpeed() {
-    $("#canvas").removeAttr("animation").css("animation", "scroll "+songHeight / 100+"s linear infinite"); //length of the track.
+    $("#canvas")
+        .css("-webkit-animation", "scroll "+(songHeight / 100)*tempoOfAnimation+"s linear infinite")
+        .css("animation", "scroll "+(songHeight / 100)*tempoOfAnimation+"s linear infinite"); //length of the track.
 
     //Set the speed of the scrolling
     var cssAnimation = document.createElement('style');
@@ -256,7 +255,7 @@ function setScrollSpeed() {
     cssAnimation.appendChild(rules);
     $("#canvas").append(cssAnimation);
 
-    $("#overviewTracker").removeAttr("animation").css("animation", "scroll2 "+songHeight / 100+"s linear infinite"); //length of the track.
+    $("#overviewTracker").removeAttr("animation").css("animation", "scroll2 "+(songHeight / 100)*tempoOfAnimation+"s linear infinite"); //length of the track.
 
     //Set the speed of the scrolling
     var cssAnimation = document.createElement('style');
@@ -271,8 +270,7 @@ function setScrollSpeed() {
     '}');
     cssAnimation.appendChild(rules);
     $("#overviewTracker").append(cssAnimation);
-}       
-
+}
 /* OVERVIEW FUNCTIONS */
 
 //Calculates overview key width.
