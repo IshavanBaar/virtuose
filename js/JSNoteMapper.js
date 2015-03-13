@@ -78,7 +78,7 @@ $.getJSON("mid/passenger.json", function mapNotes(data) {
         .style("fill", function (d) {return mapFingerToColor(d.finger)})
         .style("stroke", "white")
         .style("stroke-width", "2px");
-    
+        
     var overviewNote = overviewContainer.selectAll("g").data(notesInRange).enter().append("rect")  
         .attr("x", function (d) {return getOverviewKeyXPosition(d);})
         .attr("y", function (d) {return (d.offset / 10)*overviewYscale;})
