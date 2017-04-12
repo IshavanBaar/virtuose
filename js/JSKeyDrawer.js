@@ -25,8 +25,8 @@ timer(
     function(timeleft) { // called every step to update the visible countdown
        // $('#timer').html(timeleft+"");
     },
-    function() { // what to do after
-        dispatchNoteEvents();
+    function() {
+        //dispatchNoteEvents(); //Send random events to test what happens if a note has been played
         //$('#timer').html("");
         startAnimation();
         this.milliSeconds = new Date().getTime();
@@ -143,7 +143,8 @@ function drawKeyboard() {
 
 }
 
-//Add listener for custom events.
+/* --------------- FUNCTIONS TO LISTEN IF A NOTE WAS ACTUALLY PLAYED CORRECTLY, UNFINISHED -------------- */
+
 document.addEventListener('build', function eventHandler(e) {
     var splitString = e.detail.split(',');
     var incomingPitch = splitString[0];
